@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Feedback Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #718edf;;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: auto;
+    }
+
+    .feedback-form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      background: #00796b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #004d40;
+    }
+    
+    a {
+      width: 100%;
+      margin-top: 20px;
+      padding: 1cqmin;
+      background: #00796b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      margin: 10px 0 5px;
+      justify-content: center;
+    }
+    a:hover {
+      background: #004d40;
+    }
+  </style>
+</head>
+<body>
+  <form class="feedback-form", name="submit-to-google-sheet">
+    <h1>Student Feedback</h1>
+
+    <label for="name">Student name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+    <label for="name">year</label>
+    <select id="name" name="year">
+    <option value="1st">1st </option>
+      <option value="2nd">2nd</option>
+      <option value="3rd">3rd</option>
+      <option value="4th">4th</option>
+    </select>
+
+
+    <label for="course">Course name</label>
+    <input type="text" id="course" name="course" required>
+
+    <label for="rating">Professors Feedback</label>
+    <select id="rating" name="proffessors feedback">
+      <option value="Excellent">Excellent</option>
+      <option value="Good">Good</option>
+      <option value="Average">Average</option>
+      <option value="Poor">Poor</option>
+      <option value="Very Bad">Very Bad</option>
+    </select>
+    <label for="rating">Placements</label>
+    <select id="rating" name="placements">
+      <option value="Excellent">Excellent</option>
+      <option value="Good">Good</option>
+      <option value="Average">Average</option>
+      <option value="Poor">Poor</option>
+      <option value="Very Bad">Very Bad</option>
+    </select>
+    <label for="rating">Library Facility</label>
+    <select id="rating" name="Library Facility">
+      <option value="Excellent">Excellent</option>
+      <option value="Good">Good</option>
+      <option value="Average">Average</option>
+      <option value="Poor">Poor</option>
+      <option value="Very Bad">Very Bad</option>
+    </select>
+    <label for="rating">Extra Curriculum Activities</label>
+    <select id="rating" name="Extra Curriculum Activities">
+      <option value="Excellent">Excellent</option>
+      <option value="Good">Good</option>
+      <option value="Average">Average</option>
+      <option value="Poor">Poor</option>
+      <option value="Very Bad">Very Bad</option>
+    </select>
+    
+
+    <label for="comments">Additional Comments</label>
+    <textarea id="comments" name="comments" rows="4" placeholder="Your feedback..."></textarea>
+
+    <button type="submit">Submit Feedback</button><br></br>
+    <a href="Thankyou.html">finish</a>
+  </form>
+  <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwBLqmxDTmvNbm3_TIKvDx1Ojk1tt8zgX9AYnrFTRzFdgjhWSKY3WrIQ6KDSqUvTbDuNw/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
+</body>
+</html>
